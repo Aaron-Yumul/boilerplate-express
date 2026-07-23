@@ -5,14 +5,14 @@ let app = express();
 
 // Root-level logger middleware
 app.use(function(req, res, next) {
-  console.log(req.method + " " + req.path + " - " + req.ip);
+  console.log(req.method + ' ' + req.path + ' - ' + req.ip);
   next();
 });
 
 // Serve static assets
 app.use('/public', express.static(__dirname + '/public'));
 
-// Home route
+// Home page
 app.get('/', function(req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
@@ -40,10 +40,20 @@ app.get(
   }
 );
 
-// Echo server
+// Route parameter
 app.get('/:word/echo', function(req, res) {
   res.json({
     echo: req.params.word
+  });
+});
+
+// Query parameter
+app.get('/name', function(req, res) {
+  let firstName = req.query.first;
+  let lastName = req.query.last;
+
+  res.json({
+    name: firstName + ' ' + lastName
   });
 });
 
