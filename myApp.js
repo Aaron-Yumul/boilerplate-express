@@ -7,6 +7,15 @@ let app = express();
 // 1. Meet the Node console
 console.log("Hello World");
 
+let express = require('express');
+let app = express();
+
+app.get('/', (req, res) => {
+  res.send('Hello Express');
+});
+
+module.exports = app;
+
 // 2. Serve static assets
 app.use("/public", express.static(path.join(__dirname, "public")));
 
