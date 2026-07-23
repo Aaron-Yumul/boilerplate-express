@@ -1,4 +1,8 @@
-app.get('/now',
+let express = require('express');
+let app = express();
+
+app.get(
+  '/now',
   function(req, res, next) {
     req.time = new Date().toString();
     next();
@@ -7,3 +11,5 @@ app.get('/now',
     res.json({ time: req.time });
   }
 );
+
+module.exports = app;
