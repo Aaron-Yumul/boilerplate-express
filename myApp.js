@@ -1,7 +1,12 @@
 require('dotenv').config();
 
 let express = require('express');
+let bodyParser = require('body-parser');
+
 let app = express();
+
+// Parse URL-encoded bodies
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // Root-level logger middleware
 app.use(function(req, res, next) {
@@ -49,11 +54,8 @@ app.get('/:word/echo', function(req, res) {
 
 // Query parameter
 app.get('/name', function(req, res) {
-  let firstName = req.query.first;
-  let lastName = req.query.last;
-
   res.json({
-    name: firstName + ' ' + lastName
+    name: req.query.first + ' ' + req.query.last
   });
 });
 
