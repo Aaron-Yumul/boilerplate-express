@@ -52,10 +52,17 @@ app.get('/:word/echo', function(req, res) {
   });
 });
 
-// Query parameter
-app.get('/name', function(req, res) {
+// GET /name
+app.route('/name').get(function(req, res) {
   res.json({
     name: req.query.first + ' ' + req.query.last
+  });
+})
+
+// POST /name
+.post(function(req, res) {
+  res.json({
+    name: req.body.first + ' ' + req.body.last
   });
 });
 
